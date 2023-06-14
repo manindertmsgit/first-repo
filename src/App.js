@@ -1,6 +1,7 @@
-
 import { useState, useEffect } from 'react';
-
+import NamePartners from './NamePartners';
+import Associates from './Associates';
+import Cases from './Cases ';
 
 function App() {
 
@@ -8,10 +9,9 @@ function App() {
 
    
     useEffect(() => {
-        fetch('http://localhost:8080/')
+        fetch('http://localhost:8080/', {mode: 'cors'})
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             setData(data);
           })
           .catch((err) => {
@@ -21,14 +21,18 @@ function App() {
 
       return (
         <div className="App">
-          <h2> HELLO WORLD</h2>
-          {/* <ul>
-      {data.map((item) => (
-        <li key={item.id}>{item.name}</li>
-      ))}
-    </ul> */}
-     
-       
+          <h2> HELLO WORLD</h2>   
+          <h1>WELCOME WORLD!!</h1>
+          <NamePartners />
+          <Associates />
+          <Cases />
+
+          <ul>
+      {!data ? 'loading...' : 
+        <li key={data.data}>{data.data}</li>
+      }
+    </ul>
+   
     </div>
       );
 }
