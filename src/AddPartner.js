@@ -44,6 +44,7 @@ function AddPartnerForm() {
       console.log('Please fill in all fields');
     }
   };
+  
 
   const addPartner = (partner) => {
     console.log('Adding partner:', partner);
@@ -97,7 +98,7 @@ function AddPartnerForm() {
         </div>
         <button type="submit">Submit</button>
       </form>
-      {showPartners && <NamePartners partners={partners} />} 
+      {/* {showPartners && <NamePartners partners={partners} />}  */}
     </div>
   );
 }

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 const NamePartners = () => {
   const [partners, setPartners] = useState([]);
@@ -18,6 +20,9 @@ const NamePartners = () => {
           <p>{partner.firstName} {partner.lastName} - {partner.email}</p>
         </div>
       ))}
+       <Link to="/add-partner">
+        <button>Add Partner</button>
+      </Link>
     </div>
   );
 };

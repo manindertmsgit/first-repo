@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate, Outlet } from 'react-router-dom';
 import NamePartners from './NamePartners';
 import Associates from './Associates';
+import Cases from './Cases';
 import AddPartner from './AddPartner';
-// import Cases from './Cases';
 
-function App() {
+const App = () => {
   const [data, setData] = useState([]);
   const [showPartners, setShowPartners] = useState(false);
   const [partners, setPartners] = useState([]);
@@ -39,31 +40,31 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <div>
-        <button onClick={handleHomeButtonClick}>Home</button>
-        {showPartners && <NamePartners />}
-        
-        <button onClick={handleAddPartnerClick}>Add Partner</button>
-        {showPartners || <AddPartner onSubmit={submitData} />}
+    <Router>
+      <div className="App">
+        <div>
+          <Link to="/partners">
+            <button onClick={handleHomeButtonClick}>Partners</button>
+          </Link>
+          <Link to="/associates">
+            <button>Associates</button>
+         </Link>
+         <Link to="/cases">
+            <button>Cases</button>
+          </Link>
+        </div>
+
+        <Routes>
+          <Route path="/partners" element={<NamePartners />} />
+          <Route path="/associates" element={<Associates />} />
+          <Route path="/cases" element={<Cases />} />
+
+          <Route path="/" element={<NamePartners />} />
+          <Route path="/add-partner" element={<AddPartner />} />
+        </Routes>
       </div>
-
-      <h2>HELLO WORLD</h2>
-      <h1>WELCOME WORLD!!</h1>
-
-      {/* <Associates />
-      <Cases /> */}
-
-      <ul>
-        {!data ? (
-          'loading...'
-        ) : (
-          <li key={data.data}>{data.data}</li>
-        )}
-      </ul>
-      
-    </div>
+    </Router>
   );
-}
+};
 
 export default App;
